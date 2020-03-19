@@ -9,22 +9,6 @@
       >
         <v-card-title v-text="category.name"> </v-card-title>
       </v-img>
-
-      <v-card-actions>
-        <v-spacer></v-spacer>
-
-        <v-btn icon>
-          <v-icon>mdi-heart</v-icon>
-        </v-btn>
-
-        <v-btn icon>
-          <v-icon>mdi-bookmark</v-icon>
-        </v-btn>
-
-        <v-btn icon>
-          <v-icon>mdi-share-variant</v-icon>
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </v-container>
 </template>
