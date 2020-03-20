@@ -18,8 +18,8 @@
           v-for="category of categories"
           :key="category.id"
           md="3"
-          sm="6"
-          xl="8"
+          sm="12"
+          xs="12"
           @click="$router.push(`/categories/${category.id}`)"
         >
           <categoryPreview :category="category" />
@@ -34,8 +34,8 @@
           v-for="category of categories"
           :key="category.id"
           md="3"
-          sm="6"
-          xl="8"
+          sm="12"
+          xs="12"
         >
           <categoryPreview :category="category" />
         </v-col>
@@ -49,8 +49,8 @@
           v-for="category of categories"
           :key="category.id"
           md="3"
-          sm="6"
-          xl="8"
+          sm="12"
+          xs="12"
         >
           <categoryPreview :category="category" />
         </v-col>
