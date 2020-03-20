@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto my-12" max-width="374">
+  <v-card>
     <v-img height="250" :src="product.image"></v-img>
 
     <v-card-title v-text="product.name"></v-card-title>
@@ -45,8 +45,24 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
-  name: 'ProductPreview',
-  props: ['product'],
+  name: 'ProductView',
+  props: {
+    id: { required: true, type: String },
+  },
+  computed: {
+    ...mapState('products', {
+      product: (state) => state.product,
+    }),
+  },
+
+  mounted() {
+    this.getProductById(this.id);
+  },
+  methods: {
+    ...mapActions('products', ['getProductById']),
+  },
 };
 </script>

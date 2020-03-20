@@ -1,11 +1,12 @@
 <template>
   <v-app>
     <v-toolbar max-height="65" color="indigo" dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-      <v-toolbar-title>Discover</v-toolbar-title>
+      <v-toolbar-title>
+        <v-btn text dark to="/">Store</v-btn>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
+        <v-icon>search</v-icon>
       </v-btn>
     </v-toolbar>
     <router-view></router-view>
@@ -14,10 +15,10 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
 
   data: () => ({
     //
-  })
+  }),
 };
 </script>

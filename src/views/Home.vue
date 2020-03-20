@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-container fluid>
+    <v-container>
       <v-row dense elevation="8">
         <v-col cols="12">
           <v-card>
@@ -28,7 +28,7 @@
 
       <v-row>
         <v-col elevation="8" cols="12">
-          <h3>Top Selling</h3>
+          <h3>Trending</h3>
         </v-col>
         <v-col
           v-for="category of categories"
@@ -60,25 +60,25 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import CategoryPreview from "@/components/CategoryPreview.vue";
+import { mapState, mapActions } from 'vuex';
+import CategoryPreview from '@/components/CategoryPreview.vue';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    CategoryPreview
+    CategoryPreview,
   },
   computed: {
-    ...mapState("products", {
-      categories: state => state.categories
-    })
+    ...mapState('products', {
+      categories: (state) => state.categories,
+    }),
   },
 
   mounted() {
     this.getCategories();
   },
   methods: {
-    ...mapActions("products", ["getCategories"])
-  }
+    ...mapActions('products', ['getCategories']),
+  },
 };
 </script>

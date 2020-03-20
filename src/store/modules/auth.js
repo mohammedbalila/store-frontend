@@ -40,7 +40,7 @@ function saveState(key, state) {
 }
 
 function setDefaultAuthHeaders(state) {
-  axios.defaults.baseURL = 'http://localhost:8000/api';
+  axios.defaults.baseURL = 'https://store-beta.herokuapp.com/api';
   axios.defaults.headers.common.Authorization = state.currentUser
     ? state.currentUser.token
     : '';
