@@ -1,4 +1,4 @@
 # store
 
 
-### A simple store fornt end made with vuejs and vuetify
+### A simple store front-end made with vuejs and vuetify
