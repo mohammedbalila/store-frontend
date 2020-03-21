@@ -1,11 +1,12 @@
 <template>
   <v-card>
     <v-container>
-      <v-row dense elevation="8">
-        <v-col cols="12">
+      <v-row>
+        <v-col elevation="8" cols="12">
           <v-card>
             <v-img
               src="http://localhost:8000/media/categories/IMG_0995.JPG"
+              lazy-src="../assets/category.jpg"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
@@ -14,6 +15,7 @@
             </v-img>
           </v-card>
         </v-col>
+
         <v-col
           v-for="category of categories"
           :key="category.id"
@@ -31,13 +33,13 @@
           <h3>Trending</h3>
         </v-col>
         <v-col
-          v-for="category of categories"
-          :key="category.id"
+          v-for="product of products"
+          :key="product.id"
           md="3"
           sm="12"
           xs="12"
         >
-          <categoryPreview :category="category" />
+          <productPreview :product="product" />
         </v-col>
       </v-row>
 
@@ -46,13 +48,14 @@
           <h3>Deals Of the Day</h3>
         </v-col>
         <v-col
-          v-for="category of categories"
-          :key="category.id"
+          v-for="discount of discounts"
+          :key="discount.id"
           md="3"
           sm="12"
           xs="12"
+          @click="$router.push(`/discounts/${discount.id}`)"
         >
-          <categoryPreview :category="category" />
+          <discountPreview :discount="discount" />
         </v-col>
       </v-row>
     </v-container>
@@ -62,23 +65,34 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import CategoryPreview from '@/components/CategoryPreview.vue';
+import ProductPreview from '@/components/ProductPreview.vue';
+import DiscountPreview from '@/components/DiscountPreview.vue';
 
 export default {
   name: 'Home',
   components: {
     CategoryPreview,
+    ProductPreview,
+    DiscountPreview,
   },
   computed: {
     ...mapState('products', {
       categories: (state) => state.categories,
+      products: (state) => state.products,
+    }),
+    ...mapState('discounts', {
+      discounts: (state) => state.discounts,
     }),
   },
 
   mounted() {
     this.getCategories();
+    this.getTrendingProducts();
+    this.getDiscounts();
   },
   methods: {
-    ...mapActions('products', ['getCategories']),
+    ...mapActions('products', ['getCategories', 'getTrendingProducts']),
+    ...mapActions('discounts', ['getDiscounts']),
   },
 };
 </script>

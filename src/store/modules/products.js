@@ -50,11 +50,29 @@ const actions = {
       return error;
     }
   },
+  async getTrendingProducts({ commit }) {
+    try {
+      const resp = await axios.get(`/products/?limit=5`);
+      commit('SET_PRODUCTS', resp.data.results);
+      return resp.data.results;
+    } catch (error) {
+      return error;
+    }
+  },
   async getProductById({ commit }, id) {
     try {
       const resp = await axios.get(`/products/${id}/`);
       commit('SET_PRODUCT', resp.data);
       return resp.data;
+    } catch (error) {
+      return error;
+    }
+  },
+  async search(_, val) {
+    try {
+      const resp = await axios.get(`/products/?name=${val}`);
+      // commit('SET_PRODUCT', resp.data);
+      return resp.data.results;
     } catch (error) {
       return error;
     }

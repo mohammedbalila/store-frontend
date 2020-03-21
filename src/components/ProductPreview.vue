@@ -1,6 +1,10 @@
 <template>
   <v-card class="mx-auto my-12" max-width="374">
-    <v-img height="250" :src="product.image"></v-img>
+    <v-img
+      height="250"
+      :src="product.image"
+      lazy-src="../assets/category.jpg"
+    ></v-img>
 
     <v-card-title v-text="product.name"></v-card-title>
     <v-card-text>

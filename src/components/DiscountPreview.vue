@@ -2,14 +2,12 @@
   <v-container>
     <v-card>
       <v-img
-        :src="category.image"
-        lazy-src="../assets/category.jpg"
+        src="../assets/discount.png"
         class="white--text align-end"
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         height="200px"
-        min-width="100px"
       >
-        <v-card-title> {{ category.name }} </v-card-title>
+        <v-card-title> {{ discount.percentage }}% </v-card-title>
       </v-img>
     </v-card>
   </v-container>
@@ -17,7 +15,7 @@
 
 <script>
 export default {
-  name: 'CategoryPreview',
-  props: ['category'],
+  name: 'DiscountPreview',
+  props: ['discount'],
 };
 </script>

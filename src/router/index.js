@@ -14,7 +14,7 @@ const routes = [
     path: '/categories/:id',
     name: 'ProductsCategoryView',
     component: function() {
-      return import('../views/ProductsCategoryView.vue');
+      return import('../views/CategoryProductsView.vue');
     },
     props: true,
   },
@@ -23,6 +23,14 @@ const routes = [
     name: 'ProductView',
     component: function() {
       return import('../views/ProductView.vue');
+    },
+    props: true,
+  },
+  {
+    path: '/discounts/:id',
+    name: 'DiscountView',
+    component: function() {
+      return import('../views/DiscountProductsView.vue');
     },
     props: true,
   },

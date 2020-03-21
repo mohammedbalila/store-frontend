@@ -16,7 +16,7 @@ import { mapState, mapActions } from 'vuex';
 import ProductPreview from '@/components/ProductPreview.vue';
 
 export default {
-  name: 'Home',
+  name: 'CategoryProductsView',
   props: {
     id: { required: true, type: String },
   },
