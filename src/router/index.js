@@ -34,6 +34,14 @@ const routes = [
     },
     props: true,
   },
+
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: function() {
+      return import('../views/Signup.vue');
+    },
+  },
 ];
 
 const router = new VueRouter({

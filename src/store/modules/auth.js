@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const state = {
   currentUser: getSavedState('auth.currentUser'),
+  errors: [],
 };
 
 const getters = {
@@ -17,6 +18,9 @@ const mutations = {
     saveState('auth.currentUser', newValue);
     setDefaultAuthHeaders(state);
   },
+  SET_ERRORS(state, errors) {
+    state.errors = errors;
+  },
 };
 
 const actions = {
@@ -24,6 +28,17 @@ const actions = {
   // starts, along with any other actions named `init` in other modules.
   init({ state }) {
     setDefaultAuthHeaders(state);
+  },
+
+  async signup({ commit }, user) {
+    try {
+      const resp = await axios.post('/auth/registration/', user);
+      commit('SET_CURRENT_USER', resp.data);
+    } catch (error) {
+      const errors = formatError(error.response);
+      commit('SET_ERRORS', errors);
+      return error;
+    }
   },
 };
 
@@ -37,6 +52,12 @@ function getSavedState(key) {
 
 function saveState(key, state) {
   window.localStorage.setItem(key, JSON.stringify(state));
+}
+
+function formatError(error) {
+  const { data } = error;
+  const errors = Object.values(data).map((err) => err[0]);
+  return errors;
 }
 
 function setDefaultAuthHeaders(state) {
