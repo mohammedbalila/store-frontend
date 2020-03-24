@@ -15,34 +15,7 @@
     <v-col>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
-          v-model="firstName"
-          :rules="nameRules"
-          label="First Name"
-          rounded
-          filled
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="lastName"
-          :rules="nameRules"
-          label="Last Name"
-          rounded
-          filled
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="phone"
-          :rules="phoneRules"
-          label="Phone number"
-          rounded
-          filled
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="email"
+          v-model="username"
           :rules="emailRules"
           label="E-mail"
           rounded
@@ -60,22 +33,6 @@
           required
         ></v-text-field>
 
-        <v-text-field
-          v-model="passwordConfirmation"
-          :rules="passwordRules"
-          type="password"
-          label="Confirm password"
-          rounded
-          filled
-          required
-        ></v-text-field>
-
-        <v-checkbox
-          v-model="agreeOnTerms"
-          :rules="[v => !!v || 'You must agree to continue!']"
-          label="Do you agree on our terms and conditions?"
-          required
-        ></v-checkbox>
         <div v-if="errors">
           <p v-for="error of errors" :key="error" class="text-center red--text">
             {{ error }}
@@ -87,7 +44,7 @@
           class="m-4 text--black"
           @click="validate"
         >
-          Create an account
+          Login
         </v-btn>
       </v-form>
     </v-col>
@@ -100,31 +57,16 @@ import { mapState } from "vuex";
 export default {
   data: () => ({
     valid: true,
-    firstName: "",
-    lastName: "",
-    nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length <= 15) || "Name must be less than 15 characters"
-    ],
-    phone: "",
-    phoneRules: [
-      v => !!v || "Phone is required",
-      v => (v && v.length > 9) || "Phone must be at least 10 characters",
-      v => (v && v.length < 14) || "Phone must be less than 14 characters",
-      v => /^[0-9 +]+$/.test(v) || "Enter a valid phone number"
-    ],
-    email: "",
+    username: "",
     emailRules: [
       v => !!v || "E-mail is required",
       v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
     password: "",
-    passwordConfirmation: "",
     passwordRules: [
       v => !!v || "Password is required",
       v => (v && v.length > 8) || "Password must be at least 8 characters"
-    ],
-    agreeOnTerms: false
+    ]
   }),
 
   computed: {
@@ -145,16 +87,11 @@ export default {
       if (this.$refs.form.validate());
       {
         const user = {
-          first_name: this.firstName,
-          last_name: this.lastName,
-          username: this.email,
-          phone: this.phone,
-          email: this.email,
-          password1: this.password,
-          password2: this.passwordConfirmation
+          username: this.username,
+          password: this.password
         };
         this.$store
-          .dispatch("auth/signUp", user)
+          .dispatch("auth/logIn", user)
           .then(() => this.successRedirect());
       }
     },

@@ -18,6 +18,11 @@
 <script>
 export default {
   name: 'CategoryPreview',
-  props: ['category'],
+  props: {
+    category: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>

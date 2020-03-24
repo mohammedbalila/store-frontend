@@ -16,6 +16,11 @@
 <script>
 export default {
   name: 'DiscountPreview',
-  props: ['discount'],
+  props: {
+    discount: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>

@@ -1,53 +1,60 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: "/",
+    name: "Home",
+    component: Home
   },
   {
-    path: '/categories/:id',
-    name: 'ProductsCategoryView',
+    path: "/categories/:id",
+    name: "ProductsCategoryView",
     component: function() {
-      return import('../views/CategoryProductsView.vue');
+      return import("../views/CategoryProductsView.vue");
     },
-    props: true,
+    props: true
   },
   {
-    path: '/products/:id',
-    name: 'ProductView',
+    path: "/products/:id",
+    name: "ProductView",
     component: function() {
-      return import('../views/ProductView.vue');
+      return import("../views/ProductView.vue");
     },
-    props: true,
+    props: true
   },
   {
-    path: '/discounts/:id',
-    name: 'DiscountView',
+    path: "/discounts/:id",
+    name: "DiscountView",
     component: function() {
-      return import('../views/DiscountProductsView.vue');
+      return import("../views/DiscountProductsView.vue");
     },
-    props: true,
+    props: true
   },
 
   {
-    path: '/signup',
-    name: 'Signup',
+    path: "/signup",
+    name: "SignUp",
     component: function() {
-      return import('../views/Signup.vue');
-    },
+      return import("../views/Signup.vue");
+    }
   },
+  {
+    path: "/login",
+    name: "LogIn",
+    component: function() {
+      return import("../views/Login.vue");
+    }
+  }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;

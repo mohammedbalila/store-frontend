@@ -48,38 +48,7 @@
       </v-col>
 
       <v-col cols="12">
-        <v-card outlined class="pa-2">
-          <v-card-title>
-            Customsers reviews
-          </v-card-title>
-          <v-card v-for="review in reviews" :key="review.id" outlined>
-            <v-list-item three-line>
-              <v-list-item-avatar tile size="50" color="grey">
-                <v-img
-                  src="https://cdn.mos.cms.futurecdn.net/6y6p32tRRRtjoiVbKf2HNJ-650-80.jpg"
-                ></v-img>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title
-                  class="headline mb-1"
-                  v-text="review.user_info.username"
-                ></v-list-item-title>
-                <v-list-item-subtitle
-                  v-text="review.comment"
-                ></v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-
-            <v-card-actions>
-              <v-btn text color="grey">
-                <v-icon>thumb_up_alt</v-icon> {{ review.up_votes }}
-              </v-btn>
-              <v-btn text color="grey">
-                <v-icon>thumb_down_alt</v-icon> {{ review.down_votes }}
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-card>
+        <reviews :productId="id" />
       </v-col>
     </v-row>
   </v-container>
@@ -87,6 +56,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Reviews from '@/components/Reviews.vue';
 
 export default {
   name: 'ProductView',
@@ -95,10 +65,8 @@ export default {
     id: { required: true, type: String },
   },
 
-  data() {
-    return {
-      comments: [],
-    };
+  components: {
+    Reviews,
   },
 
   computed: {
